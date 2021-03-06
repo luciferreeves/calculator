@@ -1,0 +1,26 @@
+{
+  "name": "calculator",
+  "version": "0.1.0",
+  "description": "A Command Line Scientific Calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luciferreeves/calculator.git"
+  },
+  "keywords": [
+    "Calculator",
+    "Scientific",
+    "CLI",
+    "Command",
+    "Line"
+  ],
+  "author": "Kumar Priyansh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luciferreeves/calculator/issues"
+  },
+  "homepage": "https://github.com/luciferreeves/calculator#readme"
+}
