@@ -2,7 +2,7 @@
   "name": "calculator",
   "version": "0.1.0",
   "description": "A Command Line Scientific Calculator",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/luciferreeves/calculator/issues"
   },
-  "homepage": "https://github.com/luciferreeves/calculator#readme"
+  "homepage": "https://github.com/luciferreeves/calculator#readme",
+  "bin": {
+    "calculator": "./bin/index.js"
+  }
 }
