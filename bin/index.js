@@ -43,12 +43,12 @@ Command Help Example:
             .option('rt', {
                 alias: 'round-to',
                 desc: 'Round upto the number of decimal places passed',
-                type: 'number',
+                type: 'number'
             }),
         handler: function (args) {
             if (args._.length === 2) {
                 const result = args._[1].split(',').reduce((a, b) => Number(a) + Number(b), 0)
-                console.log(args.rt ? parseFloat(result.toFixed(args.rt)) : result)
+                console.log(args.rt ? Math.round((result + Number.EPSILON) * Math.pow(10, args.rt)) / Math.pow(10, args.rt) : result)
             } else {
                 infoMessage.showError('add', 'needs a list of comma-separated numbers to be passed.');
             }
