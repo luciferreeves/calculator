@@ -11,6 +11,6 @@ const args = yargs.scriptName("calculator")
     .strict()
     .argv
 
-if (args.info || Object.keys(args).length < 3) {
+if (args.info || Object.keys(args).length < 3 && !args._.length) {
     infoMessage.getIntroductoryMessage();
 }
