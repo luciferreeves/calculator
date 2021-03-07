@@ -6,6 +6,8 @@ const boxen = require("boxen");
 const chalk = require("chalk");
 const packageInfo = require('./../package.json');
 const math = require('mathjs');
+const fs = require('fs');
+const path = require('path');
 const infoMessage = {
     getIntroductoryMessage: () => {
         // If the command is run without any options we will show the about screen
@@ -81,4 +83,10 @@ Command Help Example:
 
 if (args.info || Object.keys(args).length < 3 && !args._.length) {
     infoMessage.getIntroductoryMessage();
+}
+
+if (args.license && Object.keys(args).length === 3 && !args._.length) {
+    const filePath = path.join(__dirname, '../LICENSE');
+    const licenseContents = fs.readFileSync(filePath);
+    console.log(licenseContents.toString());
 }
