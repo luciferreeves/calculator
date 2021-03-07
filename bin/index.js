@@ -5,6 +5,7 @@ const terminalLink = require('terminal-link');
 const boxen = require("boxen");
 const chalk = require("chalk");
 const packageInfo = require('./../package.json');
+const math = require('mathjs');
 const infoMessage = {
     getIntroductoryMessage: () => {
         // If the command is run without any options we will show the about screen
@@ -38,7 +39,7 @@ Command Help Example:
   $0 add --help`)
     .command({
         command: 'add',
-        describe: 'Takes a list of numbers all separated by commas and adds them and returns the output. Optional arguments can be passed.',
+        describe: 'Takes a list of numbers all separated by commas and adds them consecutively and returns the output. Optional arguments can be passed.',
         builder: (yargs) => yargs
             .option('rt', {
                 alias: 'round-to',
@@ -47,10 +48,28 @@ Command Help Example:
             }),
         handler: function (args) {
             if (args._.length === 2) {
-                const result = args._[1].split(',').reduce((a, b) => Number(a) + Number(b), 0)
-                console.log(args.rt ? Math.round((result + Number.EPSILON) * Math.pow(10, args.rt)) / Math.pow(10, args.rt) : result)
+                const result = math.evaluate(args._[1].split(',').join('+'));
+                console.log(args.rt ? math.round(result, args.rt) : result)
             } else {
-                infoMessage.showError('add', 'needs a list of comma-separated numbers to be passed.');
+                infoMessage.showError('add', `needs 2 arugments, ${args._.length} passed.`);
+            }
+        }
+    })
+    .command({
+        command: ['sub', 'subtract'],
+        describe: 'Takes a list of numbers all separated by commas and subtracts them consecutively and returns the output. Optional arguments can be passed.',
+        builder: (yargs) => yargs
+            .option('rt', {
+                alias: 'round-to',
+                desc: 'Round upto the number of decimal places passed',
+                type: 'number'
+            }),
+        handler: function (args) {
+            if (args._.length === 2) {
+                const result = math.evaluate(args._[1].split(',').join('-'));
+                console.log(args.rt ? math.round(result, args.rt) : result)
+            } else {
+                infoMessage.showError('subtract', `needs 2 arugments, ${args._.length} passed.`);
             }
         }
     })
